@@ -1,0 +1,41 @@
+
+<section class="bg-main-light p-4 rounded my-3 w-75 mx-auto">
+
+    <h1 class="text-center">login Naw</h1>
+    
+    <form [formGroup]="loginform" (ngSubmit)="handelForm()">
+    
+
+    <div>
+        <label  for="email">email:</label>
+        <input #inputEmail formControlName="email" type="email" id="email" class="form-control">
+    
+        <div class="alert alert-danger" *ngIf="loginform.get('email')?.errors && (loginform.get('email')?.touched || inputEmail.value.length > 0 )">
+            <p *ngIf="loginform.get('email')?.getError('required')">email is Requird</p>
+            <p *ngIf="loginform.get('email')?.getError('email')">email invald </p>
+            </div>
+        </div>
+        <div>
+            <label for="password">password:</label>
+            <input #inputPassword formControlName="password" type="password" id="password" class="form-control">
+    
+            <div class="alert alert-danger" *ngIf="loginform.get('password')?.errors && (loginform.get('password')?.touched || inputPassword.value.length > 0)">
+                <p *ngIf="loginform.get('password')?.getError('required')">password is Requird</p>
+                <p *ngIf="loginform.get('password')?.getError('pattern')">  password must start with upperCase then from 6 to 10 </p>
+                </div>
+                
+            </div>
+    
+    
+    
+
+    <div>
+    <button [disabled]="loginform.invalid" class="btn-main ms-auto d-block m-2 "> <i *ngIf="isloading" class="fas fa-spinner fa-spin"></i> login</button>
+    </div>
+
+    <p *ngIf="msgError" class="alert alert-danger">{{msgError}}</p>
+    </form>
+    </section> 
+    
+    
+    

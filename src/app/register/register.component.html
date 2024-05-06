@@ -1,0 +1,71 @@
+
+<section class="bg-main-light p-4 rounded my-3 w-75 mx-auto">
+
+<h1 class="text-center">regaster Naw</h1>
+
+<form [formGroup]="regasterform" (ngSubmit)="handelForm()">
+
+<div>
+<label for="name">name:</label>
+<input formControlName="name" type="text" id="name" class="form-control">
+
+<div class="alert alert-danger" *ngIf="regasterform.get('name')?.errors && regasterform.get('name')?.touched ">
+<p *ngIf="regasterform.get('name')?.getError('required')">Name Requird</p>
+<p *ngIf="regasterform.get('name')?.getError('minLength')">Name minlins 3</p>
+<p *ngIf="regasterform.get('name')?.getError('maxLength')">Name maxlins 20</p>
+</div>
+</div>
+<div>
+    <label for="email">email:</label>
+    <input formControlName="email" type="email" id="email" class="form-control">
+
+    <div class="alert alert-danger" *ngIf="regasterform.get('email')?.errors && regasterform.get('email')?.touched ">
+        <p *ngIf="regasterform.get('email')?.getError('required')">email is Requird</p>
+        <p *ngIf="regasterform.get('email')?.getError('email')">email invald </p>
+        </div>
+    </div>
+    <div>
+        <label for="password">password:</label>
+        <input formControlName="password" type="password" id="password" class="form-control">
+
+        <div class="alert alert-danger" *ngIf="regasterform.get('password')?.errors && regasterform.get('password')?.touched ">
+            <p *ngIf="regasterform.get('password')?.getError('required')">password is Requird</p>
+            <p *ngIf="regasterform.get('password')?.getError('pattern')">  password must start with upperCase then from 6 to 10 </p>
+            </div>
+            
+        </div>
+
+ 
+
+        <div>
+            <label for="rePassword">rePassword:</label>
+            <input formControlName="rePassword" type="password" id="rePassword" class="form-control">
+
+            <div class="alert alert-danger" *ngIf="regasterform.get('rePassword')?.errors && regasterform.get('rePassword')?.touched ">
+                <p *ngIf="regasterform.get('rePassword')?.getError('required')">rePassword is Requird</p>
+                <p *ngIf="regasterform.get('rePassword')?.getError('pattern')">  password must start with upperCase then from 6 to 10 </p>
+                </div>
+            </div>
+            <div>
+                <label for="phone">phone:</label>
+                <input formControlName="phone" type="tel" id="phone" class="form-control">
+
+                <div class="alert alert-danger" *ngIf="regasterform.get('phone')?.errors && regasterform.get('phone')?.touched ">
+                    <p *ngIf="regasterform.get('phone')?.getError('required')">phone is Requird</p>
+                    <p *ngIf="regasterform.get('phone')?.getError('mismath')">  accept only egypt phone numbers </p>
+                    </div>
+                </div>
+<div>
+<button [disabled]="regasterform.invalid" class="btn-main ms-auto d-block m-2">
+    
+<i *ngIf="isloading" class="fas fa-spinner fa-spin"></i>    
+
+    regaster</button>
+</div>
+
+<p *ngIf="msgError" class="alert alert-danger">{{msgError}}</p> 
+
+</form>
+</section> 
+
+
